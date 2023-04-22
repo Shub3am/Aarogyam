@@ -17,6 +17,7 @@ const icon = <Icon name="person-circle-outline" size={30} color="white"/>
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
 
   
@@ -53,15 +54,18 @@ export default function App() {
           name= "Routine" 
           component={Routine} 
           options={{ 
-            title: 'Start your Routine' ,
-           
+            title: 'Start your Routine' , 
             }}/>
         <Stack.Screen name= "History" component={History} options={{ title: 'History'}}/>
       </Stack.Navigator>
     </NavigationContainer>
+
+    
     
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

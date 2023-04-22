@@ -9,6 +9,8 @@ import { useState } from "react";
 import {Button} from 'react-native-elements'
 
 
+
+
 export default function Water(props) {
 
  // const {activity} = props.route.params
@@ -28,7 +30,7 @@ export default function Water(props) {
       setWater(Water + newWater);
       setNewAmount('');
     }else{
-      alert("only numbers allowed")
+      alert("only numbers allowed" )
     }
   }
 
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     //borderColor: 'black',
     //borderWidth: 1,
-    borderRadius: 25,
+    borderRadius: 8,
     width: 350,
     marginTop: 30,
     marginBottom: 10

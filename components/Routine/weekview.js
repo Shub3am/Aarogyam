@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useState, useEffect } from "react";
 import { StyleSheet, View, TextInput, Alert,  } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -7,52 +7,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const check = <Icon name="checkmark-sharp" size={25} color="white"/>
 
 const days = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", 'Sun']
-const isCurrentRoutine = (id, routine) => {
-    return routine.find((r) => r.id === id)
-}
 
-const saveData = async (newRoutine) => {
-    console.log(newRoutine)
-    try {
-      const currentRoutine = await AsyncStorage.getItem('routineLog')
-      console.log(currentRoutine)
-      if(currentRoutine !== null) {
-        const currentRoutineParse = JSON.parse(currentRoutine)
-        let updatedRoutine = [...currentRoutine]
-        
-            updatedRoutine = [...currentRoutineParse, newRoutine]
-        
-         
-        const jsonValue = JSON.stringify(updatedRoutine)
-        await AsyncStorage.setItem('routineLog', jsonValue)
-      }else{
-        const routine = [newRoutine]
-        const jsonValue = JSON.stringify(routine)
-        await AsyncStorage.setItem('routineLog', jsonValue)
-      }
-    } catch(e) {
-      console.log(e)
-    }
-  }
-
-  //const getData....
 
 export default function Weekview(){
 
     let [pressedDays, setPressedDays] = useState([])
     let [routineName, setRoutineName] = useState('')
-    let [saved, setSaved] = useState(false)
+    
 
-   // if(sunPressed && 
-   //     monPressed && 
-   //     tuePressed && 
-   //     wenPressed && 
-   //     thuPressed &&  
-   //     friPressed && 
-   //     satPressed && 
-   //     sunPressed){
-   //     Alert.alert("You did it!", "Congrats on completing a full week!")
-   // }
+    useEffect(() => {
+        if(pressedDays.length == 7){
+            alert('congrats on completing a full week!')
+        }
+    }, [pressedDays])
+
 
    let handlePress = (day) => {
     let days = [...pressedDays]
@@ -69,16 +37,7 @@ export default function Weekview(){
     
     return result
    }
-    const saveRoutine = () => {
-        const routine = 
-        {
-            id: Math.random(),
-            name: routineName,
-            days: pressedDays
-        }
-        saveData(routine)
-        setSaved(true)
-    }
+   
     return (
         <View style = {styles.container}>
             <View style={styles.routineContainer}>
@@ -88,23 +47,17 @@ export default function Weekview(){
                     placeholderTextColor= 'white'
                     onChangeText={setRoutineName}
                     value= {routineName}
-                />
-                
+                />    
                 <View style={styles.week}>
                     {days.map((day, index) =>
                          <Button key = {index}
                          title={isInArray(day) ? check : day} 
-                         titleStyle = {{color: 'black', fontSize: 13}}
+                         titleStyle = {{color: 'black', fontSize: 12}}
                          buttonStyle = {isInArray(day) ?  styles.completed : styles.day}
                          onPress={() => handlePress(day)}      
                      /> 
                     )}    
                 </View>
-                <Button 
-                title={'save'}
-                onPress={saveRoutine}
-                disabled = {saved}
-                />
                 
             </View>
         </View>
@@ -122,7 +75,7 @@ const styles = StyleSheet.create({
         width: 370,
      
         fontSize: 24,
-        height: 180
+        height: 120
     },
     week:{
         flexDirection: 'row',

@@ -7,6 +7,7 @@ import presetRecords from './data';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const plus = <Icon name="add-circle" size={80} color="orange"/>
+const close = <Icon name="close" size={50} color="white"/>
 
 
 export default function Progress() {
@@ -38,16 +39,21 @@ function resetRecords(){
 return (
   
   <View style={styles.container}>
+    <View style = {styles.icon2}>
+        <Pressable 
+          onPress={resetRecords}
+          onLongPress={() =>setProgressList([])}
+          >{close}
+        </Pressable>  
+    </View>
     <View style={styles.inputfield}>
     <TextInput 
       style={styles.input} 
       placeholder='add new record..' 
       placeholderTextColor={'black'}
       value={progressTitle} onChangeText = {text => setProgressTitle(text)}/>              
-    </View>      
-    <View style={styles.button}>
-      <Button color={'red'} title='Reset' onPress={() => resetRecords() } />
-    </View>
+    </View>    
+    
      <ScrollView> 
         <View>
           {progressList.map((item, index) => {
@@ -83,7 +89,7 @@ input: {
   //borderColor: 'black',
   //borderWidth: 1,
   borderRadius: 8,
-  width: 320,
+  width:  350,
   marginTop: 10,
   marginBottom: 10
 },
@@ -126,5 +132,11 @@ recordWrapper: {
         paddingBottom: 20,
         alignItems: 'center'
     },
+
+    icon2: {
+      marginLeft: 290,
+      marginTop: 20,
+      
+      }
 
 });

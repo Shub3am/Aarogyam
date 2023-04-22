@@ -31,7 +31,7 @@ const saveData = async (newLog) => {
   }
 }
 
-const icon = <Icon name="list-outline" size={40} color="white"/>
+const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
 //const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
 //const icon = <Icon name="book-outline" size={40} color="white"/>
 
