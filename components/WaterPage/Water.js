@@ -3,7 +3,8 @@ import {
   Text,
   View,
   TextInput,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
 import { useState } from "react";
 import {Button} from 'react-native-elements'
@@ -47,8 +48,8 @@ export default function Water(props) {
   function resetAmt(){
     setWater(0)
   }
- 
-  
+
+
   return (
     <View style = {styles.container}>
       <ScrollView >
