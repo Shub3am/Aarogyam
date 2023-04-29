@@ -28,7 +28,7 @@ const clearAll = async () => {
 }
 
 // This function takes in two arguments, an array of objects called `history` and a string called `query`.
-const filterHistory = (history, query) => {
+const filterHistory = (history,  query) => {
   // If the `query` is falsy, simply return the original `history` array.
   if (!query) {
       return history;
@@ -37,6 +37,7 @@ const filterHistory = (history, query) => {
   // Otherwise, return a filtered version of the `history` array where each object's `activityName` property matches the `query` (case-insensitive).
   return history.filter((item) => {
       return item.activityName.toLowerCase().includes(query.toLowerCase());
+              
   });
 };
 
@@ -90,7 +91,8 @@ export default function History(){
                     filterHistory(history, filterQuery).map((h,i) => 
                         <View style = {styles.activityContainer} key = {i}>
                             <Text style = {styles.activityHeading}>{h?.activityName}:</Text>
-                            <Text style = {styles.activitylog}>{h?.time}</Text>
+                            <Text style = {styles.activitylog}>{h?.time}</Text> 
+                            <Text style={styles.activitylog}>{h?.date}</Text>    
                         </View>
                     ) : 
                     <Text style ={styles.nohistory}>Nothing to display. Start a workout to show history.</Text>
@@ -129,15 +131,17 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     activityContainer:{
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        borderWidth: 3,
-        borderColor: '#1C1C1E',
-        borderBottomColor: 'gray'    
+        alignItems: 'left',
+        borderBottomWidth: 3,
+        borderBottomColor: 'lightgray',
+        marginHorizontal: 10, 
+        marginVertical: 5
+        
     },
     activityHeading:{
-        color: 'white',
+        color: '#FF9F0A', // ios system orange
         fontSize: 32,
         fontWeight: 'bold',
         paddingLeft: 20
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
     },
     activitylog: {
         color: 'white',
-        fontSize: 24,
+        fontSize: 18,
         letterSpacing: 2,
         marginVertical: 10,
         paddingLeft: 20,

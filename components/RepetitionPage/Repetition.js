@@ -15,21 +15,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const saveData = async (newLog) => {
   try {
-    const currentHistory = await AsyncStorage.getItem('historyLog')
-    if(currentHistory !== null) {
-      const currentHistoryParse = JSON.parse(currentHistory)
-      const updatedHistory = [...currentHistoryParse, newLog]
-      const jsonValue = JSON.stringify(updatedHistory)
-      await AsyncStorage.setItem('historyLog', jsonValue)
-    }else{
-      const history = [newLog]
-      const jsonValue = JSON.stringify(history)
-      await AsyncStorage.setItem('historyLog', jsonValue)
+    const currentDate = new Date().toLocaleString();
+    const currentHistory = await AsyncStorage.getItem('historyLog');
+    if (currentHistory !== null) {
+      const currentHistoryParse = JSON.parse(currentHistory);
+      const updatedHistory = [...currentHistoryParse, {...newLog, date: currentDate}];
+      const jsonValue = JSON.stringify(updatedHistory);
+      await AsyncStorage.setItem('historyLog', jsonValue);
+    } else {
+      const history = [{...newLog, date: currentDate}];
+      const jsonValue = JSON.stringify(history);
+      await AsyncStorage.setItem('historyLog', jsonValue);
     }
-  } catch(e) {
-    console.log(e)
+  } catch (e) {
+    console.log(e);
   }
-}
+};
 
 const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
 //const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
