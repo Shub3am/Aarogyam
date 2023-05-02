@@ -1,7 +1,7 @@
-import { StyleSheet, View,  FlatList, Text,ScrollView } from 'react-native';
+import { StyleSheet, View,  FlatList, Text,ScrollView, Pressable } from 'react-native';
 import { Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/Ionicons';
-// import Weekview from '../Routine/weekview';
+import Weekview from '../Routine/weekview';
 
 const activities = [
   {
@@ -36,35 +36,32 @@ const settings = <Icon name="settings-outline" size={30} color="white"/>
 export default function Home( {navigation}) {
   return (
   <View style={styles.container}>
-  <Text style={styles.heading1}>Welcome Back, User</Text>
-  <View style = {styles.icon}>{settings}</View>
-  <Text style={styles.headings}>Quick Picks</Text>
-  <View style = {styles.quickpicks}>
-  <View style = {styles.topScroll}>
-    <FlatList
-      style={styles.list}
-      horizontal={true}
-      data={activities}
-      renderItem={({ item }) => (
-        <Button
-          icon={item.icon} 
-          title={item.title}
-          titleStyle = {{fontSize: 18}}
-          onPress={() => navigation.navigate(item.type, { activity: item.title })}
-          color={'white'}
-          buttonStyle={styles.Button}
+    <Text style={styles.heading1}>Welcome Back, User</Text>
+    <View style = {styles.icon}>
+                <Pressable onPress={() => navigation.navigate("register")}>{settings}</Pressable>        
+            </View> 
+    <Text style={styles.headings}>Quick Picks</Text>
+    <View style = {styles.quickpicks}>
+      <View style = {styles.topScroll}>
+        <FlatList
+          style={styles.list}
+          horizontal={true}
+          data={activities}
+          renderItem={({ item }) => (
+            <Button
+            icon={item.icon} 
+            title={item.title}
+            titleStyle = {{fontSize: 18}}
+            onPress={() => navigation.navigate(item.type, { activity: item.title })}
+            color={'white'}
+            buttonStyle={styles.Button}
+          />
+          )}
+          keyExtractor={item => item.title}
         />
-      )}
-      keyExtractor={item => item.title}
-    />
-  </View>
-  </View>
-  <ScrollView>
-  <View>
-    {/* displays a routiner container on home screen 
-    <Weekview/>
-    */}
-  </View>
+      </View>
+    </View>
+    <ScrollView> 
     <Text style={styles.headings}>Health</Text>
     <Button
     title = {'Water Tracking'}
@@ -76,22 +73,10 @@ export default function Home( {navigation}) {
     title = {'Workout History'}
     onPress = {() => navigation.navigate("History")}
     buttonStyle = {styles.historyTrackingButton}
-    />
-    <Button
-    title = {'Routine Tracker'}
-   onPress = {() => navigation.navigate("Routine")}
-    buttonStyle = {styles.historyTrackingButton}
-    />
-    <Button
-    title = {'Progress Tracker'}
-   onPress = {() => navigation.navigate("Progress")}
-    buttonStyle = {styles.historyTrackingButton}
-    />
+    />  
   </ScrollView>
 </View>
-  );
-
-  
+  ); 
 }
 
 const styles = StyleSheet.create({
@@ -109,13 +94,12 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     marginRight: 40,
-    marginTop: 20,
-    
+    marginTop: 20,  
   },
   quickpicks:{
     backgroundColor: '#3A3A3C', //ios 4
     marginHorizontal: 15,
-    borderRadius: 20,
+    borderRadius: 8,
     marginTop: 20,
   },
   heading1: {
@@ -169,5 +153,9 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 15,
     height: 60
+  },
+  Weekview: {
+    flex: 1,
+    alignItems: 'center',
   }
 });

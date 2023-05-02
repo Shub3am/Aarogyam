@@ -36,8 +36,7 @@ const filterHistory = (history,  query) => {
 
   // Otherwise, return a filtered version of the `history` array where each object's `activityName` property matches the `query` (case-insensitive).
   return history.filter((item) => {
-      return item.activityName.toLowerCase().includes(query.toLowerCase());
-              
+      return item.activityName.toLowerCase().startsWith(query.toLowerCase());            
   });
 };
 
@@ -88,11 +87,13 @@ export default function History(){
             />
             <ScrollView contentContainerStyle = {{alignItems: 'left'}}> 
                 {history && history.length > 0 ? 
-                    filterHistory(history, filterQuery).map((h,i) => 
+                    filterHistory(history, filterQuery)
+                    .reverse() //reverses the order of the array
+                    .map((h,i) => 
                         <View style = {styles.activityContainer} key = {i}>
                             <Text style = {styles.activityHeading}>{h?.activityName}:</Text>
-                            <Text style = {styles.activitylog}>{h?.time}</Text> 
-                            <Text style={styles.activitylog}>{h?.date}</Text>    
+                            <Text style={styles.activitylog}>{h?.date}</Text> 
+                            <Text style = {styles.activitylog}>{h?.time}{h?.rep}{h?.weight}{h?.pounds}</Text>  
                         </View>
                     ) : 
                     <Text style ={styles.nohistory}>Nothing to display. Start a workout to show history.</Text>
@@ -142,16 +143,17 @@ const styles = StyleSheet.create({
     },
     activityHeading:{
         color: '#FF9F0A', // ios system orange
-        fontSize: 32,
+        fontSize: 24,
         fontWeight: 'bold',
-        paddingLeft: 20
+        paddingLeft: 20,
+        marginBottom: 10
 
     },
     activitylog: {
         color: 'white',
         fontSize: 18,
         letterSpacing: 2,
-        marginVertical: 10,
+        marginBottom: 10,
         paddingLeft: 20,
     },
     button:{

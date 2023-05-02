@@ -13,6 +13,8 @@ import { Button } from "react-native-elements";
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+
 const saveData = async (newLog) => {
   try {
     const currentDate = new Date().toLocaleString();
@@ -33,12 +35,10 @@ const saveData = async (newLog) => {
 };
 
 const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
+const plus = <Icon name="add-circle" size={40} color="orange"/>
+const minus = <Icon name="remove-circle" size={40} color="orange"/>
 //const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
 //const icon = <Icon name="book-outline" size={40} color="white"/>
-
-
-
-
 
 
 export default function Repetition( {route, navigation}) {
@@ -46,13 +46,21 @@ export default function Repetition( {route, navigation}) {
 
 
   let [count, setCount] = useState(0)
+  let [weight, setWeight] = useState(0);
 
   function handleAlert(){
     if(count > 0){
     Alert.alert('Log Reps?', 'This will save your reps to history', [ //add {activity} to alert somehow
       {
         text: 'OK', 
-        onPress: () => saveData({activityName: activity, time: count }) //this is where i add params to send curTime to History.js
+        onPress: () => saveData({
+          activityName: activity, 
+          time: count, 
+          weight: weight == 0 ? "0" : weight, 
+          rep: " Reps x ",
+          pounds: 'lbs'
+        }) 
+          //this is where i add params to send curTime to History.js
       }, 
       { 
         text: 'Go To History',
@@ -79,26 +87,33 @@ export default function Repetition( {route, navigation}) {
           onPress= 
             {handleAlert}>{icon}</Pressable>        
         </View>
-        <Text style = {{fontSize: 30, color: 'white'}}>{activity}</Text>
-        <View>
-          <Text style = {{fontSize: 72, color: 'white'}}>{count}</Text>
-        </View>
+        <Text style = {{fontSize: 30, color: 'white', marginBottom: 25}}>{activity}</Text>
        <View style = {styles.buttoncontainer}>
-       <Button
-          title="add rep"
-          onPress={() => setCount(count + 1)}      
-          color={'white'} 
-          buttonStyle = {styles.ButtonRep}     
-        />
-         <Button
-          title="add 10"
-          onPress={() => setCount(count +10)}
-          color={'white'}   
-          buttonStyle = {styles.ButtonSet}     
-        /> 
+          <Pressable 
+            onPress = {() => setCount(count -1)}
+            onLongPress = {() => setCount(count -5)}
+            disabled = {count == 0}>{minus}
+          </Pressable>        
+          <Text style = {{fontSize: 32, color: 'white', paddingHorizontal: 30}}>Reps: {count}</Text>
+          <Pressable
+            onPress = {() => setCount(count +5)}
+            onLongPress = {() => setCount(count +10)}>{plus}
+          </Pressable>  
+       </View>
+       <View style = {styles.buttoncontainer}>
+          <Pressable onPress = {() => setWeight(weight -5)}
+          disabled = {weight == 0}
+          >{minus}</Pressable>        
+          <Text style = {{fontSize: 32, color: 'white', paddingHorizontal: 21}}>weight: {weight}</Text>
+          <Pressable onPress = {() => setWeight(weight +5)}>{plus}</Pressable>  
+       </View>
+       <View style = {styles.buttoncontainer}>
         <Button
           title="reset"
-          onPress={() => setCount(0)}
+          onPress={() => (
+            setCount(0), 
+            setWeight(0)
+          )}
           color={'white'}   
           buttonStyle = {styles.ButtonReset}     
         /> 

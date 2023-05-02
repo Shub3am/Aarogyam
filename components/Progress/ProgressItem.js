@@ -7,23 +7,13 @@ import { StyleSheet, Text, TextInput, View,  } from 'react-native';
 const Record = (props) => {
 
     return (
-      <View style = {styles.rowContainer}>              
-          <Text  style = {styles.namefield}>{props.text}</Text>    
-          <TextInput      
-                style = {styles.field}
-                keyboardType="number-pad"
-                >      
-            </TextInput>
-            <Text style = {{fontSize:24, color: 'white'}}>
-                X
-            </Text>
-            <TextInput 
-                style = {styles.field}
-                keyboardType="numeric"
-           
-                >
-                
-            </TextInput>
+      <View style = {styles.componentContainer}>
+        <Text  style = {styles.namefield}>{props.text}</Text>
+      <View style = {styles.rowContainer}>             
+          <Text  style = {styles.repfield}>Reps: {props.reps} x {props.weight} lbs</Text>                 
+      </View>
+      <Text  style = {styles.setfield}>sets: {props.sets}</Text> 
+      <Text  style = {styles.setfield}>{props.date}</Text>
       </View>
     )
   }
@@ -31,39 +21,52 @@ const Record = (props) => {
 
 const Progressitem = (props) => {
   return (
-    <View > 
+    <View> 
       <View > 
-        <Record  text = {props.item.title} />   
+        <Record  
+          text = {props.item.title} 
+          reps = {props.item.reps} 
+          weight = {props.item.weight} 
+          sets = {props.item.sets}
+          date = {props.item.date}
+          />   
+        
       </View>
     </View>
   ) 
 }
 const styles = StyleSheet.create({
+  componentContainer: {
+    backgroundColor: 'gray',
+    borderRadius: 10,
+    padding: 15,
+    marginVertical: 10,
+    width: 320
+  },
   rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30
+  //  flexDirection: 'row',
   },
   namefield: {
-    fontSize: 20,
-    backgroundColor: 'gray',
-    width: 180,
-    padding: 10,
- //   paddingVertical: 4,
-    borderRadius: 8
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+    marginHorizontal: 5, 
+    marginVertical: 5,
+    alignItems: 'left',
   },
-  field: {
-    //edit color in textInput above
-    fontSize: 20,
-    // backgroundColor: '#48484A', //ios 2 
-    backgroundColor: 'gray',
-    width: 60,
-    marginHorizontal: 15,
-    padding: 10,
-//    paddingVertical: 4,
-    borderRadius: 8
-}
+  repfield: {
+    fontSize: 16,
+    color: 'white',
+    marginHorizontal: 5,  
+    marginVertical: 5  
+  },
+  setfield: {
+    fontSize: 16,
+    color: 'white',
+    marginHorizontal: 5, 
+    marginVertical: 5
+  },
+ 
  
 });
 
