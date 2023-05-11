@@ -1,5 +1,5 @@
 import {  useEffect, useState } from "react";
-import { StyleSheet, Text, View, TextInput, ScrollView, FlatList, Pressable, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, Text, View, TextInput, ScrollView, FlatList, Pressable, } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from 'react-native-vector-icons/Ionicons';
 import Weekview from "./weekview";

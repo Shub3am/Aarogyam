@@ -78,10 +78,11 @@ export default function History(){
     return (
         <View style = {styles.container}>
             <View style = {styles.icon}>
-          <Pressable
-          onPress= 
-            {alertHandeler}>{icon}</Pressable>        
-        </View>
+                <Pressable
+                    onPress= {alertHandeler}>
+                        {icon}
+                </Pressable>        
+            </View>
             <Text style = {styles.heading}>History</Text>   
             <ScrollView contentContainerStyle = {{alignItems: 'left'}}> 
             {history ?  history?.map((h,i) => 
@@ -89,7 +90,7 @@ export default function History(){
                     <Text style = {styles.activityHeading}>{h?.activityName}:</Text>
                     <Text style = {styles.activitylog}>{h?.time}</Text>
                 </View>
-                ): <Text style ={{color: 'white'}}>there is no history</Text>} 
+                ): <Text style ={styles.nohistory}>Nothing to display. Start a workout to show history.</Text>} 
                 
             </ScrollView>     
 
@@ -104,6 +105,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#1C1C1E', //ios dark mode background system gray 6,
       // backgroundColor: 'white',
         alignItems: "left",    
+    },
+    nohistory: {
+        color: 'white',
+        fontSize: 24,
+        marginHorizontal: 20,
+        marginVertical: 35
+
     },
     icon: {
         position: 'absolute',
