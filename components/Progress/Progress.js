@@ -35,17 +35,20 @@ export default function Progress() {
       key: Math.random().toString,
       title: progressTitle,
       reps: parseInt(progressReps),
-      weight: parseInt(progressWeight),
-      sets: parseInt(progressSets),
+      weight: progressWeight === '' ? 0 : parseInt(progressWeight),
+      sets: progressWeight === '' ? 0 : parseInt(progressSets),
       date: currentDate
       
     };
 
-    if (progressTitle === '') {
+    if (progressTitle === '' || 
+        progressReps === '') {
       alert('field cannot be blank');
+      setModalVisible(true);
     } else {
       const newRecords = [...progressList, _newRecord];
       setProgressList(newRecords);
+      setModalVisible(false);
     }
     setProgressTitle('');
     setProgressReps('');
@@ -54,7 +57,7 @@ export default function Progress() {
   }
 
   function resetRecords() {
-    setProgressList(presetRecords);
+    setProgressList('');
   }
 
   return (
@@ -68,7 +71,7 @@ export default function Progress() {
       <ScrollView>
         {progressList.length > 0 ? (
         <View>
-          {progressList.map((item, index) => {
+          {progressList.map((item, index) => { //find a way to reverse the map.... reverse() is buggy 
             return <Progressitem 
             key={index} 
             item={item} 
@@ -131,8 +134,7 @@ export default function Progress() {
             />
             <Pressable style = {styles.iconPlus}
               onPress={() => {
-                handleAddRecord(); 
-                setModalVisible(false); 
+                handleAddRecord();   
               }}>{plusSmall}
             </Pressable>
           </View>
@@ -203,7 +205,7 @@ recordWrapper: {
 },
 icon2: {
   marginLeft: 290,
-  marginTop: 20,
+  marginTop: 40,
 },
 iconClose: {
   justifyContent: 'center',
@@ -219,7 +221,7 @@ iconPlus: {
  // Styles for modal container
  modalContainer: {
   flex: 1,
-  justifyContent: 'center',
+  justifyContent: 'center', // flex-end
   alignItems: 'center',
   backgroundColor: '#1C1C1E', //ios dark mode background system gray 6
 },
@@ -234,8 +236,7 @@ nodata: {
   color: 'white',
   fontSize: 24,
   marginHorizontal: 20,
-  marginVertical: 35
-
+  marginVertical: 35,
 },
 
 });

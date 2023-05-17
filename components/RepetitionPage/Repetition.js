@@ -17,7 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const saveData = async (newLog) => {
   try {
-    const currentDate = new Date().toLocaleString();
+    const currentDate = new Date().toLocaleDateString('en-US');
     const currentHistory = await AsyncStorage.getItem('historyLog');
     if (currentHistory !== null) {
       const currentHistoryParse = JSON.parse(currentHistory);
@@ -34,7 +34,7 @@ const saveData = async (newLog) => {
   }
 };
 
-const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
+const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="lightgray"/>
 const plus = <Icon name="add-circle" size={40} color="orange"/>
 const minus = <Icon name="remove-circle" size={40} color="orange"/>
 //const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>

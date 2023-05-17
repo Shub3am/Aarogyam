@@ -26,7 +26,7 @@ const saveData = async (newLog) => {
 
 
 //const icon = <Icon name="list-outline" size={40} color="white"/>
-const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
+const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="lightgray"/>
 //const icon = <Icon name="book-outline" size={40} color="white"/>
 
 
@@ -124,8 +124,8 @@ function handleAlert(){
             {handleAlert}>{icon}</Pressable>        
         </View>
         <View style= {styles.component}> 
-        <Text style = {{fontSize: 30, color: 'white'}}>{activity}</Text>
-        <Text style = {{fontSize: 64, letterSpacing:6, color: 'white'}}>{formatTime(curTime)}</Text>        
+        <Text style = {{fontSize: 30, color: 'white', fontWeight: 'bold'}}>{activity}</Text>
+        <Text style = {{fontSize: 64, letterSpacing:6, color: 'white', fontWeight: 'bold'}}>{formatTime(curTime)}</Text>        
         <View style = {styles.buttoncontainer}>
          <Button
            title={running ? 'Stop' : 'Start'}
