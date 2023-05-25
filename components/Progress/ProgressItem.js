@@ -19,7 +19,10 @@ const Record = (props) => {
             </Text>
             <TextInput 
                 style = {styles.field}
-                keyboardType="numeric">
+                keyboardType="numeric"
+           
+                >
+                
             </TextInput>
       </View>
     )

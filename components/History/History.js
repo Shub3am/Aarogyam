@@ -1,17 +1,8 @@
 import { useEffect, useState } from 'react'
-import {
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    ScrollView,
-    FlatList,
-    Pressable,
-    Alert
-  } from "react-native";
-import { Button } from "react-native-elements";
+import {StyleSheet, Text, View, ScrollView, Pressable, Alert} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 
 const icon = <Icon name="ellipsis-horizontal-circle" size={40} color="white"/>
 
@@ -46,7 +37,7 @@ export default function History(){
     let [history, setHistory] = useState([])
 
     function alertHandeler(){
-        Alert.alert('Delete Histoy?', 'This will Permetly delete your history', [ //add {activity} to alert somehow
+        Alert.alert('Delete Histoy?', 'This will Permetly delete your history', [ 
           {
             text: 'Yes', 
             style: 'destructive',
@@ -54,7 +45,7 @@ export default function History(){
           }, 
           { 
             text: 'cancel',
-            onPress :() => console.log('canceled'), //link to History.js and send params 
+            onPress :() => console.log('canceled'), 
       
           },
         ])

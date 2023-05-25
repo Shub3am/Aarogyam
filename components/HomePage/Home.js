@@ -28,13 +28,7 @@ const activities = [
   title:"Jumping Jacks",
   type:"Repetition",
   icon: <Icon name="ios-body-outline" size={25} color="white" />
-  },
- // {
- // title:"Water Intake",
- // type:"Water",
- // icon: <Icon name="ios-water-outline" size={25} color="white" />
- // }
-   
+  },  
   ]
 
 const settings = <Icon name="settings-outline" size={30} color="white"/>
@@ -53,8 +47,9 @@ export default function Home( {navigation}) {
       data={activities}
       renderItem={({ item }) => (
         <Button
-          icon={item.icon}
+          icon={item.icon} 
           title={item.title}
+          titleStyle = {{fontSize: 18}}
           onPress={() => navigation.navigate(item.type, { activity: item.title })}
           color={'white'}
           buttonStyle={styles.Button}
@@ -87,7 +82,7 @@ export default function Home( {navigation}) {
    onPress = {() => navigation.navigate("Routine")}
     buttonStyle = {styles.historyTrackingButton}
     />
-     <Button
+    <Button
     title = {'Progress Tracker'}
    onPress = {() => navigation.navigate("Progress")}
     buttonStyle = {styles.historyTrackingButton}

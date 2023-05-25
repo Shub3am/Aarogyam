@@ -86,6 +86,7 @@ function handleAddLap(){
   const newLaps = [...lapList]
   newLaps.push(formatTime(curTime))
   setLapList(newLaps)  
+  saveData({activityName: activity ,time: formatTime(curTime) })
   }else {
     alert("must start timer")
   }
@@ -96,7 +97,7 @@ function handleAlert(){
   Alert.alert('Log Time?', 'This will save your time to history', [ 
     {
       text: 'OK', 
-      onPress: () => saveData({activityName: activity ,time: formatTime(curTime) })
+      onPress: () => saveData({activityName: activity ,time: formatTime(curTime)})
     }, 
     { 
       text: 'Go To History',

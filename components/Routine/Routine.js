@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Weekview from "./weekview";
 
 const plus = <Icon name="add-circle" size={80} color="orange"/>
-const icon = <Icon name="ellipsis-horizontal-circle-sharp" size={40} color="white"/>
+const icon = <Icon name="close" size={40} color="white"/>
 
 export default function Routine(){
 
