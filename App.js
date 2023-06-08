@@ -12,15 +12,16 @@ import Water from './components/WaterPage/Water';
 import Progress from './components/Progress/Progress';
 import Routine from './components/Routine/Routine';
 import History from './components/History/History';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const icon = <Icon name="person-circle-outline" size={30} color="white"/>
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
 
 
 export default function App() {
-
-  
 
   return (
     <NavigationContainer>
@@ -59,6 +60,7 @@ export default function App() {
         <Stack.Screen name= "History" component={History} options={{ title: 'History'}}/>
       </Stack.Navigator>
     </NavigationContainer>
+    
 
     
     
