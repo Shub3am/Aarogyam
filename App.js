@@ -1,7 +1,8 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import {  StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //import screens
@@ -12,18 +13,29 @@ import Water from './components/WaterPage/Water';
 import Progress from './components/Progress/Progress';
 import Routine from './components/Routine/Routine';
 import History from './components/History/History';
+import Timer from './components/Timer/Timer';
+import RegisterScreen from './components/Register/Register';
+//import RegisterScreen from './components/Register/Register';
+//import Login from './components/Login/Login'
 
 
-const icon = <Icon name="person-circle-outline" size={30} color="white"/>
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-//stack navigator for screens 
+
+
+
+//stack navigator for main navigator screens 
 function MainNavigator() {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false, }}>
-      <Stack.Screen name="HomeScreen" component={Home} />
+    <Stack.Navigator screenOptions={{
+        headerShown: true,
+        headerStyle: {backgroundColor: 'orange'},
+        headerTintColor: 'white',
+        headerTitleStyle: 'bold',    
+        }}>
+      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Repetition" component={Repetition} />
       <Stack.Screen name="Duration" component={Duration} />
       <Stack.Screen name="Water" component={Water} />
@@ -36,17 +48,21 @@ function MainNavigator() {
 export default function App() {
   return (
     <NavigationContainer>
-     <Tab.Navigator
+      <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
-              iconName = focused ? 'home' : 'ios-home-outline';
+            if (route.name === 'Main') {
+              iconName = focused ? 'ios-barbell-sharp' : 'ios-barbell-outline'; size = 20
             } else if (route.name === 'Routine') {
-              iconName = focused ? 'sync' : 'sync';
-            } else if (route.name === 'Progress') {
-              iconName = focused ? 'list' : 'list-outline';
+              iconName = focused ? 'sync' : 'sync'; size = 20
+            } else if (route.name === 'Workout') {
+              iconName = focused ? 'list-sharp' : 'list-outline'; size = 20
+            } else if (route.name === 'Timer') {
+              iconName = focused ? 'timer' : 'timer-outline'; size = 20
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'person-circle' : 'person-circle-outline'; size = 20
             }
 
             // Return the icon component with the specified color and size
@@ -58,17 +74,17 @@ export default function App() {
             display: 'flex',
             backgroundColor: '#3A3A3C',
           },
-          headerShown: true,
+          headerShown: false,
           headerStyle: {backgroundColor: 'orange'},
           headerTintColor: 'white',
-          headerTitleStyle: 'bold',
-         
-          
+          headerTitleStyle: 'bold',         
         })}
       >
-        <Tab.Screen name="Home" component={MainNavigator} />
+        <Tab.Screen name="Main" component={MainNavigator} />
         <Tab.Screen name="Routine" component={Routine} />
-        <Tab.Screen name="Progress" component={Progress} />
+        <Tab.Screen name="Workout" component={Progress} />
+        <Tab.Screen name="Timer" component={Timer} />
+        <Tab.Screen name="Profile" component={RegisterScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -85,5 +101,3 @@ const styles = StyleSheet.create({
     backgroundColor: null
   }
 });
-
-

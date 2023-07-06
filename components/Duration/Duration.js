@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const saveData = async (newLog) => {
   try {
-    const currentDate = new Date().toLocaleString();
+    const currentDate = new Date().toLocaleDateString('en-US');
     const currentHistory = await AsyncStorage.getItem('historyLog');
     if (currentHistory !== null) {
       const currentHistoryParse = JSON.parse(currentHistory);
