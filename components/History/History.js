@@ -137,13 +137,13 @@ const styles = StyleSheet.create({
         alignItems: 'left',
         borderBottomWidth: 3,
         borderBottomColor: 'lightgray',
-        marginHorizontal: 10, 
+        marginHorizontal: 25, 
         marginVertical: 5
         
     },
     activityHeading:{
         color: '#FF9F0A', // ios system orange
-        fontSize: 24,
+        fontSize: 32,
         fontWeight: 'bold',
         paddingLeft: 20,
         marginBottom: 10
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     },
     activitylog: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 24,
         letterSpacing: 2,
         marginBottom: 10,
         paddingLeft: 20,
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         width: 300
     },
     searchInput: {
-      paddingVertical: 15, 
+    paddingVertical: 15, 
     paddingHorizontal: 15,
     marginHorizontal: 10,
     backgroundColor: 'lightgray',

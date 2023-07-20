@@ -60,7 +60,7 @@ export default function App() {
             } else if (route.name === 'Workout') {
               iconName = focused ? 'list-sharp' : 'list-outline'; size = 20
             } else if (route.name === 'Timer') {
-              iconName = focused ? 'timer' : 'timer-outline'; size = 20
+              iconName = focused ? 'timer-outline' : 'timer-outline'; size = 20
             } else if (route.name === 'Profile') {
               iconName = focused ? 'person-circle' : 'person-circle-outline'; size = 20
             }

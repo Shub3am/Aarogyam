@@ -32,11 +32,17 @@ export default function Weekview(){
     setPressedDays(days)
    }
    console.log(pressedDays)
+   console.log(routineName)
    let isInArray = (day) => {
     const result = pressedDays.find((d) => d===day)
     
     return result
    }
+
+   function handleSave() {
+    onSave(pressedDays);
+  }
+  
    
     return (
         <View style = {styles.container}>
