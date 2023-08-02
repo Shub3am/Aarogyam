@@ -22,6 +22,8 @@ const closeSmall = <Icon name="chevron-down" size={45} color="white" />;
 
 const currentDate = new Date().toLocaleDateString('en-US');
 
+
+
 export default function Progress() {
   const [progressTitle, setProgressTitle] = useState('');
   const [progressReps, setProgressReps] = useState('');
@@ -29,6 +31,8 @@ export default function Progress() {
   const [progressSets, setProgressSets] = useState('');
   const [progressList, setProgressList] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+
+
 
   function handleAddRecord() {
     const _newRecord = {

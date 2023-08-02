@@ -85,7 +85,7 @@ export default function History(){
                 placeholder="Search history"
                 placeholderTextColor="#8E8E93"
             />
-            <ScrollView contentContainerStyle = {{alignItems: 'left'}}> 
+            <ScrollView> 
                 {history && history.length > 0 ? 
                     filterHistory(history, filterQuery)
                     .reverse() //reverses the order of the array
@@ -97,8 +97,7 @@ export default function History(){
                         </View>
                     ) : 
                     <Text style ={styles.nohistory}>Nothing to display. Start a workout to show history.</Text>
-                } 
-                
+                }         
             </ScrollView>     
         </View>
     )
@@ -129,32 +128,32 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#FF9F0A', // ios system orange
         marginTop: 20,
-        marginHorizontal: 10
+        marginHorizontal: 16
     },
     activityContainer:{
         flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'left',
-        borderBottomWidth: 3,
-        borderBottomColor: 'lightgray',
-        marginHorizontal: 25, 
-        marginVertical: 5
-        
+        alignItems: 'flex-start',
+        width: 350,
+        marginHorizontal: 24, 
+        marginVertical: 6,
+        paddingHorizontal: 24,
+        paddingTop: 16,
+        backgroundColor: '#3A3A3C',
+        borderRadius: 12,  
+          
     },
     activityHeading:{
         color: '#FF9F0A', // ios system orange
-        fontSize: 32,
+        fontSize: 24,
         fontWeight: 'bold',
-        paddingLeft: 20,
         marginBottom: 10
-
     },
     activitylog: {
         color: 'white',
-        fontSize: 24,
+        fontSize: 16,
         letterSpacing: 2,
         marginBottom: 10,
-        paddingLeft: 20,
     },
     button:{
         backgroundColor: 'red',
@@ -165,17 +164,15 @@ const styles = StyleSheet.create({
         width: 300
     },
     searchInput: {
-    paddingVertical: 15, 
-    paddingHorizontal: 15,
-    marginHorizontal: 10,
-    backgroundColor: 'lightgray',
-    //borderColor: 'black',
-    //borderWidth: 1,
-    borderRadius: 8,
-    width: 350,
-    marginTop: 30,
-    marginBottom: 10
-    }
+        paddingVertical: 15,
+        paddingHorizontal: 15,
+        marginHorizontal: 0, // Remove or set to 0
+        backgroundColor: 'lightgray',
+        borderRadius: 8,
+        width: '100%', // Make the input take up the full width
+        marginTop: 30,
+        marginBottom: 10
+      }
   
 
 })

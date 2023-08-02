@@ -15,6 +15,9 @@ import Routine from './components/Routine/Routine';
 import History from './components/History/History';
 import Timer from './components/Timer/Timer';
 import RegisterScreen from './components/Register/Register';
+import Warmup from './components/Workouts/Warmup';
+
+
 //import RegisterScreen from './components/Register/Register';
 //import Login from './components/Login/Login'
 
@@ -40,6 +43,8 @@ function MainNavigator() {
       <Stack.Screen name="Duration" component={Duration} />
       <Stack.Screen name="Water" component={Water} />
       <Stack.Screen name = 'History' component={History}/>
+      <Stack.Screen name = "Warmup" component = {Warmup}/>
+      
     </Stack.Navigator>
   );
 }
