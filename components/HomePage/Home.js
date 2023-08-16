@@ -1,6 +1,6 @@
 import { StyleSheet, View,  FlatList, Text,ScrollView, Pressable,  } from 'react-native';
 import { Button } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Weekview from '../Routine/weekview';
 //import image1 from 'images/image1'
 
@@ -114,14 +114,14 @@ const activities = [
   ];
 
 
-const settings = <Icon name="settings-outline" size={30} color="white"/>
+const settings = <Icon name="user-o" size={30} color="white"/>
 
 export default function Home( {navigation}) {
   return (
 <View style={styles.container}>
   <Text style={styles.heading1}>Welcome Back, User</Text>
   <View style={styles.icon}>
-    <Pressable onPress={() => navigation.navigate("register")}>{settings}</Pressable>
+    <Pressable onPress={() => navigation.navigate("About")}>{settings}</Pressable>
   </View>
   <Text style={styles.headings}>Quick Picks</Text>
   <View style={styles.quickpicks}>

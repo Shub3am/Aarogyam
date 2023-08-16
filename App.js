@@ -66,7 +66,7 @@ export default function App() {
               iconName = focused ? 'list-sharp' : 'list-outline'; size = 20
             } else if (route.name === 'Timer') {
               iconName = focused ? 'timer-outline' : 'timer-outline'; size = 20
-            } else if (route.name === 'Profile') {
+            } else if (route.name === 'About') {
               iconName = focused ? 'person-circle' : 'person-circle-outline'; size = 20
             }
 
@@ -89,7 +89,7 @@ export default function App() {
         <Tab.Screen name="Routine" component={Routine} />
         <Tab.Screen name="Workout" component={Progress} />
         <Tab.Screen name="Timer" component={Timer} />
-        <Tab.Screen name="Profile" component={RegisterScreen} />
+        <Tab.Screen name="About" component={RegisterScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
