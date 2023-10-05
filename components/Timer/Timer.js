@@ -21,11 +21,14 @@ const Timer = () => {
 
 
   const handleStart = () => {
+
     if (time === 0) {
       setTime(Number(hours) * 3600 + Number(minutes) * 60 + Number(seconds));
       
-    }
-    setIsActive(true);
+    }    if (!minutes && !seconds && !hours) {
+      alert("No Time Specified🤦‍♂️")
+    } else {
+    setIsActive(true);}
   };
 
   const handleStop = () => {
@@ -49,7 +52,11 @@ const Timer = () => {
    // } else if (time === 0) {
    //   Alert.alert('Timer Done');
    //   setIsActive(false);
-    } else {
+    } else if (time == 0 && isActive) {
+      alert("Time's Up😎")
+      handleReset()
+    }else {
+      
       clearInterval(interval);
     }
     return () => clearInterval(interval);
