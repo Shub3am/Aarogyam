@@ -1,5 +1,5 @@
 import {  useEffect, useState } from "react";
-import { StyleSheet, Text, View, TextInput, ScrollView, FlatList, Pressable, Modal} from "react-native";
+import { StyleSheet, Text, View, TextInput, ScrollView, FlatList, Pressable, Modal, Alert} from "react-native";
 import { Button } from "react-native-elements";
 import Icon from 'react-native-vector-icons/Ionicons';
 import Weekview from "./weekview";
@@ -19,14 +19,17 @@ let [routineName, setRoutineName] = useState('')
 
 
     function handleAddRoutine(){
+
         const _newRoutine = {
           key: Math.random().toString,
           days: pressedDays,
-          name: RoutineName
+          name: routineName
         
         }
-          const newRoutine = [...routine,  _newRoutine] 
+        
+          const newRoutine = [...routine, _newRoutine] 
           setRoutine(newRoutine)
+          console.log(routine)
           setModalVisible(false)
           
           
@@ -41,12 +44,15 @@ let [routineName, setRoutineName] = useState('')
      
       return (
         <View style={styles.container}>
+          {routine.length ?(
           <View style={styles.icon2}>
             <Pressable onPress={() => resetRoutine()}>{icon}</Pressable>
-          </View>
+
+          </View>): <View style={styles.icon2}></View>}
           <ScrollView>
-            <View>
+            {routine.length ? (<View>
               {routine.map((item, index, ) => {
+                
                 return (
                   <Weekview key={index}
                     item={item}
@@ -55,9 +61,10 @@ let [routineName, setRoutineName] = useState('')
                   />
                 );
               })}
-            </View>
+            </View>):<Text style={styles.noRoutine}>No Routine to display</Text>}
           </ScrollView>
           <View style={styles.icon}>
+           <Text style={styles.nodata}>Add a New Routine</Text>
             <Pressable onPress={() => setModalVisible(true)}>{newAdd}</Pressable>
           </View>
           <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -79,6 +86,7 @@ let [routineName, setRoutineName] = useState('')
                   />
                 </View>
                 <View style = {styles.icon}>
+                  
                         <Pressable onPress={() => handleAddRoutine()}>{plus}</Pressable>        
                     </View>
               </View>
@@ -103,6 +111,9 @@ const styles = StyleSheet.create({
     },
     icon2: {
     marginLeft: 290,
+    borderWidth: 1,
+    borderColor: "grey",
+
     marginTop: 40,
     
     },
@@ -122,5 +133,18 @@ const styles = StyleSheet.create({
         padding: 20,
         
       },
+      nodata: {
+        color: 'orange',
+        fontSize: 20,
+        marginHorizontal: 20,
+        marginVertical: 15,
+        textAlign: "center",
+      },
+      clearAll: {color: "white"},
+      noRoutine: {
+        color: "white",
+        fontSize: 25,
+        textAlign: "center",
+      }
 
 })

@@ -6,7 +6,7 @@ import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 
 const About = ( {navigation }) => {
   
-  const [isRegisted, setRegister] = useState(true)
+  const [isRegisted, setRegister] = useState(false)
 
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -14,27 +14,30 @@ const About = ( {navigation }) => {
   // handle registration logic here
   const handleRegister = () => {
     //authentication for fields 
+  
     if(username == "" && email == "" && password == ""){
-        alert('cannot continue')
+        alert("Can't be empty, Add Anything ")
     } else {
       setRegister(true)
     // navigation.navigate("About")
     
     }
   } 
+  console.log(isRegisted)
   if (isRegisted) {
+    
     return(
     <View style={styles.container}>
        <Text style={styles.showCaseText}>CODEX, COMFEST 2023</Text>
       <View style={styles.showCase}>
        
       <Text style={styles.showCaseText}>Thank You For Using "Aarogyam" Fitness App</Text>
-      <Text style={styles.showCaseText}>Made By Shubham Vishwakarma for CODEX,
+      <Text style={styles.showCaseText}>Made By Shubham Vishwakarma,
        </Text>
       <Text style={styles.showCaseText}>
        For CODEX COMFEST 2023 {`\n`}From Sunbeam School Lahartara, {`\n`}CF-CODE: 08</Text>
-       <Button title='Navigate Back to About'/>
-       </View>
+       
+       </View><Button onPress={()=> {setRegister(false)}} title='Navigate Back to About'/>
       </View>)
   } else {
   return (
