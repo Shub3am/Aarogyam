@@ -1,57 +1,51 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
 
+const About = () => {
+  const [isRegistered, setIsRegistered] = useState(false);
 
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-const About = ( {navigation }) => {
-  
-  const [isRegisted, setRegister] = useState(false)
-
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  // handle registration logic here
+  // There is no backend: "registering" only swaps this tab to the credits card.
   const handleRegister = () => {
-    //authentication for fields 
-  
-    if(username == "" && email == "" && password == ""){
-        alert("Can't be empty, Add Anything ")
+    if (username == '' && email == '' && password == '') {
+      alert("Can't be empty, Add Anything ");
     } else {
-      setRegister(true)
-    // navigation.navigate("About")
-    
+      setIsRegistered(true);
     }
-  } 
-  console.log(isRegisted)
-  if (isRegisted) {
-    
-    return(
-    <View style={styles.container}>
-       <Text style={styles.showCaseText}>CODEX, COMFEST 2023</Text>
-      <View style={styles.showCase}>
-       
-      <Text style={styles.showCaseText}>Thank You For Using "Aarogyam" Fitness App</Text>
-      <Text style={styles.showCaseText}>Made By Shubham Vishwakarma,
-       </Text>
-      <Text style={styles.showCaseText}>
-       For CODEX COMFEST 2023 {`\n`}From Sunbeam School Lahartara, {`\n`}CF-CODE: 08</Text>
-       
-       </View><Button onPress={()=> {setRegister(false)}} title='Navigate Back to About'/>
-      </View>)
-  } else {
-  return (
-    
-    <View style={styles.container}>
-        <View>
-            <Text style = {styles.heading}>Made By Shubham Vishwakarma</Text>
-            <Text style= {styles.about}>By Sunbeam School Lahartara</Text>
-            <Text style= {styles.about}>CF:08</Text>
+  };
+
+  if (isRegistered) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.showCaseText}>CODEX, COMFEST 2023</Text>
+        <View style={styles.showCase}>
+          <Text style={styles.showCaseText}>Thank You For Using "Aarogyam" Fitness App</Text>
+          <Text style={styles.showCaseText}>Made By Shubham Vishwakarma,</Text>
+          <Text style={styles.showCaseText}>
+            For CODEX COMFEST 2023 {`\n`}From Sunbeam School Lahartara, {`\n`}CF-CODE: 08
+          </Text>
         </View>
-      <Text style={styles.about}>Account Features will not work as we were told to make our application run offline</Text>
+        <Button onPress={() => setIsRegistered(false)} title="Navigate Back to About" />
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.heading}>Made By Shubham Vishwakarma</Text>
+        <Text style={styles.about}>By Sunbeam School Lahartara</Text>
+        <Text style={styles.about}>CF:08</Text>
+      </View>
+      <Text style={styles.about}>
+        Account Features will not work as we were told to make our application run offline
+      </Text>
       <TextInput
         style={styles.input}
-        placeholder="Usename"
+        placeholder="Username"
         placeholderTextColor="lightgray"
         value={username}
         onChangeText={(text) => setUsername(text)}
@@ -71,19 +65,11 @@ const About = ( {navigation }) => {
         secureTextEntry={true}
         onChangeText={(text) => setPassword(text)}
       />
-      <Button
-        title="Register"
-        onPress = {handleRegister}
-        color={'black'}
-      />
-      <Text style = {styles.loginText}>Have an Account?</Text>
-      <Button
-        title="Login"
-        onPress = {handleRegister}
-        color={'black'} 
-      />
+      <Button title="Register" onPress={handleRegister} color={'black'} />
+      <Text style={styles.loginText}>Have an Account?</Text>
+      <Button title="Login" onPress={handleRegister} color={'black'} />
     </View>
-  );}
+  );
 };
 
 const styles = StyleSheet.create({
@@ -91,16 +77,16 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: '#1C1C1E', //ios dark mode background system gray 6
+    backgroundColor: '#1C1C1E', // iOS dark mode systemGray6
   },
   heading: {
     color: 'orange',
     fontSize: 24,
     marginVertical: 15,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   about: {
-    color: "white",
+    color: 'white',
     fontSize: 20,
   },
   input: {
@@ -110,31 +96,31 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'gray',
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   loginText: {
     color: 'white',
     fontSize: 16,
     marginVertical: 5,
-  }
-  ,showCase: {
-    color: "white",
-    borderColor: "white",
-    fontSize:15,
+  },
+  showCase: {
+    color: 'white',
+    borderColor: 'white',
+    fontSize: 15,
     borderWidth: 3,
-    padding: 10 ,
+    padding: 10,
   },
   showCaseText: {
-    color: "white",
-    borderBottomColor: "white",
+    color: 'white',
+    borderBottomColor: 'white',
     borderBottomWidth: 2,
     paddingBottom: 2,
     fontSize: 22,
-    fontFamily: "monospace",
+    fontFamily: 'monospace',
     justifyContent: 'center',
-    alignContent:'center',
-    textAlign: "center"
-  }
+    alignContent: 'center',
+    textAlign: 'center',
+  },
 });
 
 export default About;

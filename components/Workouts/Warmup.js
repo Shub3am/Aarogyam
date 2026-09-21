@@ -5,7 +5,6 @@ import { useRoute } from '@react-navigation/native';
 const WorkoutScreen = () => {
   const route = useRoute();
 
-  // Access the entire workout object from the route parameters
   const workout = route.params?.workout || {};
   const exercises = workout.exercises || [];
 
@@ -13,7 +12,7 @@ const WorkoutScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>{workout.Title}</Text>
       <Text style={styles.body}>{workout.body}</Text>
-      
+
       <Text style={styles.exercisesHeader}>Exercises:</Text>
       <FlatList
         data={exercises}
@@ -24,7 +23,6 @@ const WorkoutScreen = () => {
             <Text style={styles.exerciseDescription}>{item.stretches}</Text>
           </View>
         )}
-       // keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
